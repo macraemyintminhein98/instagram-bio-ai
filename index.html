@@ -3,31 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioGenie AI</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>BioBoost AI - Instagram Bio Generator</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { font-family: sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; width: 100%; text-align: center; }
+        h1 { color: #8a3ab9; margin-bottom: 20px; font-size: 2em; }
+        p { margin-bottom: 25px; line-height: 1.6; }
+        form { display: flex; flex-direction: column; gap: 15px; }
+        input[type="text"], textarea { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; width: calc(100% - 24px); }
+        textarea { resize: vertical; min-height: 80px; }
+        button { background-color: #8a3ab9; color: white; padding: 14px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; font-weight: bold; transition: background-color 0.3s ease; }
+        button:hover { background-color: #bc2a8d; }
+        .output { margin-top: 30px; padding: 20px; background-color: #e6e6fa; border-radius: 8px; border: 1px dashed #d1c4e9; text-align: left; word-wrap: break-word; }
+        .price-tag { font-size: 1.5em; font-weight: bold; color: #555; margin-top: 20px; }
+        .cta-button { background-color: #007bff; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.2em; font-weight: bold; margin-top: 30px; text-decoration: none; display: inline-block; transition: background-color 0.3s ease; }
+        .cta-button:hover { background-color: #0056b3; }
     </style>
 </head>
-<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white rounded-lg shadow-xl p-8 max-w-lg w-full text-center">
-        <h1 class="text-4xl font-bold text-gray-800 mb-4">BioGenie AI</h1>
-        <p class="text-lg text-gray-600 mb-6">Craft your perfect Instagram bio, instantly.</p>
-        <form class="space-y-4">
-            <input type="text" placeholder="Keywords (e.g., photographer, travel)" class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500">
-            <select class="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-500">
-                <option value="">Select Tone</option>
-                <option value="funny">Funny</option>
-                <option value="professional">Professional</option>
-                <option value="inspiring">Inspiring</option>
-                <option value="creative">Creative</option>
-            </select>
-            <button type="submit" class="w-full bg-purple-600 text-white p-3 rounded-md hover:bg-purple-700 transition duration-300">Generate Bio</button>
+<body>
+    <div class="container">
+        <h1>BioBoost AI</h1>
+        <p>Craft the perfect Instagram bio with AI. Just tell us about yourself!</p>
+        <form id="bioForm">
+            <label for="keywords" style="text-align: left; font-weight: bold;">Keywords / Persona (e.g., 'travel, foodie, adventurer', 'entrepreneur, tech, innovator'):</label>
+            <input type="text" id="keywords" placeholder="e.g., travel, foodie, adventurer" required>
+            <label for="style" style="text-align: left; font-weight: bold;">Bio Style (e.g., 'witty, professional, inspiring'):</label>
+            <input type="text" id="style" placeholder="e.g., witty, professional, inspiring">
+            <button type="submit">Generate Bio</button>
         </form>
-        <div class="mt-8 p-4 bg-gray-50 border border-gray-200 rounded-md text-gray-700 text-left min-h-[100px] flex items-center justify-center">
-            <p id="generated-bio" class="text-center italic text-gray-500">Your amazing bio will appear here!</p>
+        <div class="output" id="bioOutput" style="display: none;">
+            <h2>Your AI-Generated Bio:</h2>
+            <p id="generatedText"></p>
         </div>
-        <p class="mt-6 text-sm text-gray-500">Powered by AI. Limited free generations, then just $9.99 for unlimited magic.</p>
+        <p class="price-tag">Price: $4.99 per generation</p>
+        <a href="#" class="cta-button">Get My AI Bio Now!</a>
     </div>
+    <script>
+        document.getElementById('bioForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const keywords = document.getElementById('keywords').value;
+            const style = document.getElementById('style').value;
+            const outputDiv = document.getElementById('bioOutput');
+            const generatedTextP = document.getElementById('generatedText');
+            outputDiv.style.display = 'block';
+            generatedTextP.innerHTML = 'Generating your bio... (This is a demo, actual generation requires backend)';
+            // In a real app, this would make an API call to a backend function
+            // For this demo, we simulate a response
+            setTimeout(() => {
+                generatedTextP.innerHTML = `🌟 ${keywords.split(',')[0].trim().charAt(0).toUpperCase() + keywords.split(',')[0].trim().slice(1)} | ${style.split(',')[0].trim().charAt(0).toUpperCase() + style.split(',')[0].trim().slice(1)} Spirit! ✨<br/>Exploring the world one byte at a time. Digital creator & coffee enthusiast. Let's connect!`;
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
