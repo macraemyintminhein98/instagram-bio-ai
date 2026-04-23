@@ -3,55 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioBoost AI - Instagram Bio Generator</title>
+    <title>BioGenie AI - Instant Instagram Bios</title>
+    <meta name="description" content="Generate creative, personalized Instagram bios in seconds using AI.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <style>
-        body { font-family: sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 600px; width: 100%; text-align: center; }
-        h1 { color: #8a3ab9; margin-bottom: 20px; font-size: 2em; }
-        p { margin-bottom: 25px; line-height: 1.6; }
-        form { display: flex; flex-direction: column; gap: 15px; }
-        input[type="text"], textarea { padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; width: calc(100% - 24px); }
-        textarea { resize: vertical; min-height: 80px; }
-        button { background-color: #8a3ab9; color: white; padding: 14px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; font-weight: bold; transition: background-color 0.3s ease; }
-        button:hover { background-color: #bc2a8d; }
-        .output { margin-top: 30px; padding: 20px; background-color: #e6e6fa; border-radius: 8px; border: 1px dashed #d1c4e9; text-align: left; word-wrap: break-word; }
-        .price-tag { font-size: 1.5em; font-weight: bold; color: #555; margin-top: 20px; }
-        .cta-button { background-color: #007bff; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.2em; font-weight: bold; margin-top: 30px; text-decoration: none; display: inline-block; transition: background-color 0.3s ease; }
-        .cta-button:hover { background-color: #0056b3; }
+        body { font-family: sans-serif; }
+        .container { max-width: 800px; }
+        textarea { min-height: 100px; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>BioBoost AI</h1>
-        <p>Craft the perfect Instagram bio with AI. Just tell us about yourself!</p>
-        <form id="bioForm">
-            <label for="keywords" style="text-align: left; font-weight: bold;">Keywords / Persona (e.g., 'travel, foodie, adventurer', 'entrepreneur, tech, innovator'):</label>
-            <input type="text" id="keywords" placeholder="e.g., travel, foodie, adventurer" required>
-            <label for="style" style="text-align: left; font-weight: bold;">Bio Style (e.g., 'witty, professional, inspiring'):</label>
-            <input type="text" id="style" placeholder="e.g., witty, professional, inspiring">
-            <button type="submit">Generate Bio</button>
-        </form>
-        <div class="output" id="bioOutput" style="display: none;">
-            <h2>Your AI-Generated Bio:</h2>
-            <p id="generatedText"></p>
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen flex items-center justify-center p-4">
+    <div class="container bg-white rounded-lg shadow-xl p-8 space-y-6">
+        <h1 class="text-4xl font-bold text-center text-gray-800">BioGenie AI</h1>
+        <p class="text-center text-gray-600">Craft your perfect Instagram bio instantly!</p>
+        
+        <div class="space-y-4">
+            <div>
+                <label for="keywords" class="block text-gray-700 font-semibold">Keywords (e.g., travel, food, tech):</label>
+                <input type="text" id="keywords" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
+            </div>
+            <div>
+                <label for="niche" class="block text-gray-700 font-semibold">Niche (e.g., fashion blogger, entrepreneur):</label>
+                <input type="text" id="niche" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
+            </div>
+            <div>
+                <label for="tone" class="block text-gray-700 font-semibold">Desired Tone (e.g., funny, professional, inspiring):</label>
+                <input type="text" id="tone" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500">
+            </div>
+            
+            <button id="generateBtn" class="w-full bg-purple-600 text-white font-bold py-3 px-4 rounded-md hover:bg-purple-700 transition duration-300">
+                Generate Bio
+            </button>
         </div>
-        <p class="price-tag">Price: $4.99 per generation</p>
-        <a href="#" class="cta-button">Get My AI Bio Now!</a>
+        
+        <div id="results" class="bg-gray-100 p-4 rounded-md hidden">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Your Bios:</h2>
+            <div id="output" class="space-y-3"></div>
+            <button id="copyAllBtn" class="mt-4 block w-full bg-green-500 text-white font-bold py-2 px-4 rounded-md hover:bg-green-600 transition duration-300">Copy All</button>
+        </div>
+        
+        <p class="text-center text-gray-500 text-sm mt-6">BioGenie AI is a product of APEX.</p>
     </div>
+
     <script>
-        document.getElementById('bioForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
+        const generateBtn = document.getElementById('generateBtn');
+        const resultsDiv = document.getElementById('results');
+        const outputDiv = document.getElementById('output');
+        const copyAllBtn = document.getElementById('copyAllBtn');
+
+        generateBtn.addEventListener('click', async () => {
+            // In a real app, this would call your backend API that uses the LLM
             const keywords = document.getElementById('keywords').value;
-            const style = document.getElementById('style').value;
-            const outputDiv = document.getElementById('bioOutput');
-            const generatedTextP = document.getElementById('generatedText');
-            outputDiv.style.display = 'block';
-            generatedTextP.innerHTML = 'Generating your bio... (This is a demo, actual generation requires backend)';
-            // In a real app, this would make an API call to a backend function
-            // For this demo, we simulate a response
+            const niche = document.getElementById('niche').value;
+            const tone = document.getElementById('tone').value;
+
+            outputDiv.innerHTML = '<p class="text-center text-gray-500">Generating...</p>';
+            resultsDiv.classList.remove('hidden');
+
+            // Simulate API call and LLM response
             setTimeout(() => {
-                generatedTextP.innerHTML = `🌟 ${keywords.split(',')[0].trim().charAt(0).toUpperCase() + keywords.split(',')[0].trim().slice(1)} | ${style.split(',')[0].trim().charAt(0).toUpperCase() + style.split(',')[0].trim().slice(1)} Spirit! ✨<br/>Exploring the world one byte at a time. Digital creator & coffee enthusiast. Let's connect!`;
-            }, 2000);
+                const dummyBios = [
+                    `✨ ${keywords ? keywords : 'Creative'} ${niche ? niche : 'Soul'} | ${tone ? tone.charAt(0).toUpperCase() + tone.slice(1) : 'Inspiring'} Vibes | DM for collabs! 🚀`,
+                    `Building an empire, one post at a time. 👑 ${niche ? niche : 'Entrepreneur'} | Sharing ${keywords ? keywords : 'Insights'} & ${tone ? tone : 'Good'} Energy.`,
+                    `Hello, it's me! 👋 Your daily dose of ${keywords ? keywords : 'Joy'} & ${niche ? niche : 'Inspiration'}. Let's connect! ${tone ? tone.charAt(0).toUpperCase() + tone.slice(1) : 'Positive'} Mindset.`
+                ];
+                outputDiv.innerHTML = dummyBios.map(bio => 
+                    `<div class="bg-white p-3 rounded-md border border-gray-200 flex justify-between items-center">
+                        <p class="flex-grow">${bio}</p>
+                        <button onclick="copyBio('${bio}')" class="ml-3 text-sm text-purple-600 hover:text-purple-800">Copy</button>
+                    </div>`
+                ).join('');
+            }, 1500);
+        });
+
+        function copyBio(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Bio copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+            });
+        }
+
+        copyAllBtn.addEventListener('click', () => {
+            const allBios = Array.from(outputDiv.querySelectorAll('div > p')).map(p => p.textContent).join('\n\n');
+            copyBio(allBios);
         });
     </script>
 </body>
