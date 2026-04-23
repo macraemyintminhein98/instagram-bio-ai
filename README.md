@@ -1,16 +1,10 @@
-# BioGenie AI
+# BioBoost AI - Instagram Bio Generator
 
-Generate creative, engaging Instagram bios in seconds with AI. Simply input keywords and desired tone, and let BioGenie craft your perfect online presence.
+Craft compelling Instagram bios effortlessly with AI. Provide keywords and a desired style, and get a unique, engaging bio generated in seconds. Perfect for individuals, businesses, and influencers looking to refresh their online presence.
 
-### Features:
+## Features:
 - AI-powered bio generation
-- Customizable keywords and tone
-- Multiple variations to choose from
-- Clean and intuitive interface
+- Customizable with keywords and style
+- Clean, mobile-responsive interface
 
-### How to use:
-1. Enter keywords describing yourself or your brand.
-2. Select your desired tone (funny, professional, inspiring, etc.).
-3. Click 'Generate Bio' and choose from the AI-crafted options.
-
-Enhance your Instagram presence effortlessly!
+Boost your Instagram game today with BioBoost AI!
