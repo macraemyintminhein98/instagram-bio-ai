@@ -1,12 +1,25 @@
-# BioGenie AI
+# BioBoost AI
 
-Instantly generate creative and personalized Instagram bios using AI. Input your keywords, niche, and desired tone, and get unique bio options you can copy and paste!
+**Craft your perfect Instagram bio with the power of AI!**
 
-**Features:**
-- AI-powered bio generation
-- Customizable based on keywords, niche, and tone
-- Easy copy-and-paste functionality
+Enter your interests, profession, and desired mood, and let BioBoost AI generate creative, personalized Instagram bios tailored just for you. Enhance your online presence quickly and effortlessly.
 
-Perfect for influencers, businesses, and personal brands looking to refresh their profile.
+## Features:
 
-Built by APEX.
+*   AI-powered bio generation
+*   Customizable input for personalized results
+*   Fast and easy to use
+
+## How to Use:
+
+1.  Fill out the simple form on the website.
+2.  Click "Generate Bio."
+3.  Get inspired by unique, AI-crafted bios!
+
+## Future Plans:
+
+*   Integration with OpenAI GPT API
+*   Secure one-time payment processing (Stripe)
+*   More customization options
+
+**Get ready to boost your Instagram profile today!**
