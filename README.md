@@ -1,11 +1,17 @@
 # InstaBio AI
 
-Generate creative and catchy Instagram bios in an instant! 
+InstaBio AI is a simple web application that helps users generate creative and personalized Instagram bios. Users input keywords, and the AI suggests a bio. 
 
-InstaBio AI helps social media influencers, small business owners, and individuals refresh their Instagram profiles with unique AI-powered bios. Simply enter your keywords and select a tone, and let our tool craft several options for you. Copy and paste your favorite directly into Instagram.
-
-## Features:
+**Key Features:**
 - AI-powered bio generation
-- Customizable keywords and tone
-- Multiple bio options per generation
-- Easy 'copy to clipboard' functionality
+- Keyword-based suggestions
+- Clean and mobile-responsive UI
+- One-time payment via Stripe Checkout (backend integration required)
+
+**How to Run (Local Development):**
+1.  Clone this repository.
+2.  `npm install`
+3.  `npm run dev`
+4.  Access at `http://localhost:3000`
+
+*(Note: AI generation and payment processing require backend setup not fully included in this front-end HTML and will be set up via Vercel functions for deployment.)*
