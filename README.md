@@ -1,3 +1,10 @@
-# InstaBio AI
+# BioGenie AI: Instant Instagram Bios
 
-Generate captivating Instagram bios in seconds! Simply input your interests, choose a tone, and let AI craft the perfect bio for you. Perfect for influencers, small businesses, and anyone looking to boost their Instagram presence.
+Craft compelling Instagram bios effortlessly with BioGenie AI. Just enter a few keywords, and our AI will generate creative and engaging bios tailored to your style. Elevate your Instagram presence in seconds!
+
+**Features:**
+- AI-powered bio generation
+- Keyword-based suggestions
+- Instant results
+
+Get your perfect bio today for just $4.99 and stand out on Instagram!
