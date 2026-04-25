@@ -1,17 +1,15 @@
-# InstaBio AI
+# BioGenius AI: Your Instant Instagram Bio Creator
 
-InstaBio AI is a simple web application that helps users generate creative and personalized Instagram bios. Users input keywords, and the AI suggests a bio. 
+BioGenius AI helps you craft unique and engaging Instagram bios in a flash. Simply input keywords about yourself or your brand, and our AI will generate creative options for you to choose from. Copy, paste, and shine!
 
-**Key Features:**
+**Features:**
 - AI-powered bio generation
-- Keyword-based suggestions
-- Clean and mobile-responsive UI
-- One-time payment via Stripe Checkout (backend integration required)
+- Multiple output suggestions
+- Easy copy-to-clipboard functionality
+- One-time payment for instant access
 
-**How to Run (Local Development):**
-1.  Clone this repository.
-2.  `npm install`
-3.  `npm run dev`
-4.  Access at `http://localhost:3000`
-
-*(Note: AI generation and payment processing require backend setup not fully included in this front-end HTML and will be set up via Vercel functions for deployment.)*
+**How it works:**
+1. Enter keywords describing your interests, niche, or brand.
+2. Click 'Generate My Bio!'
+3. Our AI creates several compelling bio options.
+4. Pick your favorite and copy it directly to Instagram!
