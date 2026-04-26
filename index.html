@@ -3,83 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Instagram Bio Generator</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>AI Bio Generator</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
-        body { font-family: 'Poppins', sans-serif; }
+        body { font-family: sans-serif; margin: 20px; background-color: #f0f2f5; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #3b5998; }
+        label { display: block; margin-bottom: 8px; font-weight: bold; }
+        input[type="text"] { width: calc(100% - 20px); padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; }
+        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        button:hover { background-color: #0056b3; }
+        #results { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; }
+        .bio-card { background-color: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 10px; word-wrap: break-word; }
+        #loading { text-align: center; margin-top: 20px; display: none; color: #555; }
     </style>
 </head>
-<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen flex items-center justify-center p-4">
-    <div class="bg-white p-8 rounded-lg shadow-xl max-w-sm w-full text-center">
-        <h1 class="text-3xl font-bold text-gray-800 mb-4">InstaBio AI</h1>
-        <p class="text-gray-600 mb-6">Craft your perfect Instagram bio instantly!</p>
-        <form id="bioForm" class="space-y-4">
-            <div>
-                <input type="text" id="keywords" placeholder="Keywords (e.g., foodie, traveler)" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
-            </div>
-            <div>
-                <select id="style" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
-                    <option value="witty">Witty</option>
-                    <option value="professional">Professional</option>
-                    <option value="minimalist">Minimalist</option>
-                    <option value="creative">Creative</option>
-                </select>
-            </div>
-            <button type="submit" class="w-full bg-purple-600 text-white p-3 rounded-md hover:bg-purple-700 transition duration-300 ease-in-out">
-                Generate Bio
-            </button>
-        </form>
-        <div id="result" class="mt-6 bg-gray-100 p-4 rounded-md hidden">
-            <p id="generatedBio" class="text-gray-700 mb-3"></p>
-            <button onclick="copyBio()" class="bg-pink-500 text-white px-4 py-2 rounded-md text-sm hover:bg-pink-600 transition duration-300 ease-in-out">
-                Copy Bio
-            </button>
-        </div>
-        <p class="text-sm text-gray-500 mt-6">Powered by AI • Only $4.99</p>
+<body>
+    <div class="container">
+        <h1>⚡ AI Instagram Bio Generator</h1>
+        <p>Craft your perfect Instagram bio instantly!</p>
+        <label for="keywords">Enter keywords (e.g., entrepreneur, traveler, fitness):</label>
+        <input type="text" id="keywords" placeholder="Keywords, separated by commas" />
+        <button onclick="generateBio()">Generate My Bio</button>
+        <div id="loading">Generating amazing bios...</div>
+        <div id="results"></div>
     </div>
+
     <script>
-        document.getElementById('bioForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            document.getElementById('bioForm').querySelector('button').innerText = 'Generating...';
-            document.getElementById('result').classList.add('hidden');
-
+        async function generateBio() {
             const keywords = document.getElementById('keywords').value;
-            const style = document.getElementById('style').value;
+            const resultsDiv = document.getElementById('results');
+            const loadingDiv = document.getElementById('loading');
+            resultsDiv.innerHTML = '';
+            loadingDiv.style.display = 'block';
 
-            // Mock AI response for static page - in real app, this would be an API call
-            let bio = `Boring 😴? I'm sure not! 😉 ${style.charAt(0).toUpperCase() + style.slice(1)} vibe with a touch of ${keywords || 'you'}. ✨`;
-            if (style === 'witty') bio = `Life's too short for a boring bio. I'm here for a good time & great content! 😜 ${keywords ? '#' + keywords.split(',')[0].trim().replace(' ', '') : 'bioqueen'}`;
-            if (style === 'professional') bio = `Passionate individual focused on [Your Profession/Interest]. Building connections & sharing insights. ${keywords ? '#' + keywords.split(',')[0].trim().replace(' ', '') : 'growth'}`;
-            if (style === 'minimalist') bio = `[Your Vibe]. [Your Passion]. ${keywords ? '#' + keywords.split(',')[0].trim().replace(' ', '') : 'simple'}`;
+            try {
+                // In a real app, this would be an API call to your Vercel Edge Function/backend
+                // For demo purposes, we'll simulate a response.
+                const response = await new Promise(resolve => setTimeout(() => {
+                    const samples = [
+                        `Building dreams, one post at a time ✨ Entrepreneur & Coffee Lover. DM for collabs.`, 
+                        `Wanderlust soul 🌍 Exploring new horizons & capturing moments. Follow for travel tips!`, 
+                        `Fitness enthusiast 💪🏽 Inspiring a healthier lifestyle. Lift heavy, live fully.`, 
+                        `Your daily dose of creativity 🎨 Digital artist & storyteller. Let's connect!`
+                    ];
+                    const bioCount = Math.floor(Math.random() * 3) + 2; // 2-4 bios
+                    const generatedBios = Array.from({length: bioCount}, (_, i) => samples[Math.floor(Math.random() * samples.length)]);
+                    resolve({ success: true, bios: generatedBios });
+                }, 2000)); // Simulate 2-second API call
 
-            document.getElementById('generatedBio').innerText = bio;
-            document.getElementById('result').classList.remove('hidden');
-            document.getElementById('bioForm').querySelector('button').innerText = 'Generate Bio';
-
-            // In a real app, this would trigger Stripe Checkout for payment
-            // const response = await fetch('/api/generate-bio', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify({ keywords, style })
-            // });
-            // const data = await response.json();
-            // if (response.ok) {
-            //     document.getElementById('generatedBio').innerText = data.bio;
-            //     document.getElementById('result').classList.remove('hidden');
-            // } else {
-            //     alert(data.error || 'Failed to generate bio.');
-            // }
-            // document.getElementById('bioForm').querySelector('button').innerText = 'Generate Bio';
-        });
-
-        function copyBio() {
-            const bioText = document.getElementById('generatedBio').innerText;
-            navigator.clipboard.writeText(bioText).then(() => {
-                alert('Bio copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-            });
+                if (response.success && response.bios.length > 0) {
+                    response.bios.forEach(bio => {
+                        const bioCard = document.createElement('div');
+                        bioCard.className = 'bio-card';
+                        bioCard.textContent = bio;
+                        resultsDiv.appendChild(bioCard);
+                    });
+                } else {
+                    resultsDiv.innerHTML = '<p>Could not generate bios. Please try again with different keywords.</p>';
+                }
+            } catch (error) {
+                resultsDiv.innerHTML = '<p>An error occurred: ' + error.message + '</p>';
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
         }
     </script>
 </body>
