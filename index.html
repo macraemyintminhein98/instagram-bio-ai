@@ -3,68 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Bio Generator</title>
+    <title>AI Instagram Bio Generator</title>
+    <meta name="description" content="Generate creative and engaging Instagram bios using AI.">
     <style>
-        body { font-family: sans-serif; margin: 20px; background-color: #f0f2f5; color: #333; }
-        .container { max-width: 600px; margin: 0 auto; background: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1 { text-align: center; color: #3b5998; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; }
-        input[type="text"] { width: calc(100% - 20px); padding: 10px; margin-bottom: 20px; border: 1px solid #ddd; border-radius: 4px; }
-        button { width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        button:hover { background-color: #0056b3; }
-        #results { margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; }
-        .bio-card { background-color: #e9ecef; padding: 15px; border-radius: 5px; margin-bottom: 10px; word-wrap: break-word; }
-        #loading { text-align: center; margin-top: 20px; display: none; color: #555; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
+        .container { max-width: 800px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); text-align: center; }
+        h1 { color: #5a2d82; margin-bottom: 25px; font-size: 2.4em; }
+        p { margin-bottom: 20px; font-size: 1.1em; color: #555; }
+        label { display: block; margin-bottom: 10px; font-weight: bold; color: #444; text-align: left; }
+        textarea { width: calc(100% - 20px); padding: 15px; margin-bottom: 25px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; box-sizing: border-box; resize: vertical; min-height: 100px; }
+        button { background-color: #e1306c; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s ease; }
+        button:hover { background-color: #c1205c; }
+        #output { margin-top: 30px; padding: 20px; border: 1px dashed #e1306c; border-radius: 8px; background-color: #fff0f5; text-align: left; min-height: 80px; color: #333; font-size: 1.1em; white-space: pre-wrap; word-wrap: break-word; }
+        footer { margin-top: auto; padding: 20px; text-align: center; color: #888; font-size: 0.9em; background-color: #f0f0f0; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>⚡ AI Instagram Bio Generator</h1>
-        <p>Craft your perfect Instagram bio instantly!</p>
-        <label for="keywords">Enter keywords (e.g., entrepreneur, traveler, fitness):</label>
-        <input type="text" id="keywords" placeholder="Keywords, separated by commas" />
-        <button onclick="generateBio()">Generate My Bio</button>
-        <div id="loading">Generating amazing bios...</div>
-        <div id="results"></div>
+        <h1>AI Instagram Bio Generator</h1>
+        <p>Craft the perfect Instagram bio with the power of artificial intelligence. Just tell us about yourself!</p>
+        <label for="bioInput">Keywords, profession, personality traits:</label>
+        <textarea id="bioInput" placeholder="e.g., 'Travel enthusiast, photographer, loves coffee, optimistic, funny'"></textarea>
+        <button onclick="generateBio()">Generate Bio</button>
+        <div id="output">Your AI-generated bio will appear here...</div>
+        <p style="margin-top: 30px; font-size: 0.9em;">Feeling limited? Get more bios with our <a href="#" style="color: #e1306c; text-decoration: none;">premium package</a>!</p>
     </div>
-
+    <footer>
+        &copy; 2023 APEX Instagram Bio AI. All rights reserved.
+    </footer>
     <script>
         async function generateBio() {
-            const keywords = document.getElementById('keywords').value;
-            const resultsDiv = document.getElementById('results');
-            const loadingDiv = document.getElementById('loading');
-            resultsDiv.innerHTML = '';
-            loadingDiv.style.display = 'block';
+            const input = document.getElementById('bioInput').value;
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = 'Generating your bio...';
 
+            // This is a placeholder for your actual API call.
+            // In a real app, you'd send `input` to your backend API route (e.g., /api/generate-bio).
+            // The backend would then call the AI model (e.g., OpenAI).
             try {
-                // In a real app, this would be an API call to your Vercel Edge Function/backend
-                // For demo purposes, we'll simulate a response.
-                const response = await new Promise(resolve => setTimeout(() => {
-                    const samples = [
-                        `Building dreams, one post at a time ✨ Entrepreneur & Coffee Lover. DM for collabs.`, 
-                        `Wanderlust soul 🌍 Exploring new horizons & capturing moments. Follow for travel tips!`, 
-                        `Fitness enthusiast 💪🏽 Inspiring a healthier lifestyle. Lift heavy, live fully.`, 
-                        `Your daily dose of creativity 🎨 Digital artist & storyteller. Let's connect!`
-                    ];
-                    const bioCount = Math.floor(Math.random() * 3) + 2; // 2-4 bios
-                    const generatedBios = Array.from({length: bioCount}, (_, i) => samples[Math.floor(Math.random() * samples.length)]);
-                    resolve({ success: true, bios: generatedBios });
-                }, 2000)); // Simulate 2-second API call
-
-                if (response.success && response.bios.length > 0) {
-                    response.bios.forEach(bio => {
-                        const bioCard = document.createElement('div');
-                        bioCard.className = 'bio-card';
-                        bioCard.textContent = bio;
-                        resultsDiv.appendChild(bioCard);
-                    });
+                const response = await fetch('/api/generate-bio', { // This endpoint needs to be implemented in your Next.js project
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt: input })
+                });
+                const data = await response.json();
+                if (data.bio) {
+                    outputDiv.innerText = data.bio;
                 } else {
-                    resultsDiv.innerHTML = '<p>Could not generate bios. Please try again with different keywords.</p>';
+                    outputDiv.innerText = 'Could not generate a bio. Please try again or provide more details.';
                 }
             } catch (error) {
-                resultsDiv.innerHTML = '<p>An error occurred: ' + error.message + '</p>';
-            } finally {
-                loadingDiv.style.display = 'none';
+                console.error('Error:', error);
+                outputDiv.innerText = 'An error occurred while generating the bio. Please check your connection.';
             }
         }
     </script>
