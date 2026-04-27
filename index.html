@@ -3,62 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Instagram Bio Generator</title>
-    <meta name="description" content="Generate creative and engaging Instagram bios using AI.">
+    <title>InstaBio AI - Generate Your Bio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #f4f7f6; color: #333; display: flex; flex-direction: column; min-height: 100vh; }
-        .container { max-width: 800px; margin: 40px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.08); text-align: center; }
-        h1 { color: #5a2d82; margin-bottom: 25px; font-size: 2.4em; }
-        p { margin-bottom: 20px; font-size: 1.1em; color: #555; }
-        label { display: block; margin-bottom: 10px; font-weight: bold; color: #444; text-align: left; }
-        textarea { width: calc(100% - 20px); padding: 15px; margin-bottom: 25px; border: 1px solid #ddd; border-radius: 8px; font-size: 1em; box-sizing: border-box; resize: vertical; min-height: 100px; }
-        button { background-color: #e1306c; color: white; padding: 15px 30px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; transition: background-color 0.3s ease; }
-        button:hover { background-color: #c1205c; }
-        #output { margin-top: 30px; padding: 20px; border: 1px dashed #e1306c; border-radius: 8px; background-color: #fff0f5; text-align: left; min-height: 80px; color: #333; font-size: 1.1em; white-space: pre-wrap; word-wrap: break-word; }
-        footer { margin-top: auto; padding: 20px; text-align: center; color: #888; font-size: 0.9em; background-color: #f0f0f0; border-top: 1px solid #eee; }
+        body { font-family: sans-serif; background-color: #f7fafc; }
+        .container { max-width: 600px; margin: 40px auto; padding: 20px; background: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>AI Instagram Bio Generator</h1>
-        <p>Craft the perfect Instagram bio with the power of artificial intelligence. Just tell us about yourself!</p>
-        <label for="bioInput">Keywords, profession, personality traits:</label>
-        <textarea id="bioInput" placeholder="e.g., 'Travel enthusiast, photographer, loves coffee, optimistic, funny'"></textarea>
-        <button onclick="generateBio()">Generate Bio</button>
-        <div id="output">Your AI-generated bio will appear here...</div>
-        <p style="margin-top: 30px; font-size: 0.9em;">Feeling limited? Get more bios with our <a href="#" style="color: #e1306c; text-decoration: none;">premium package</a>!</p>
-    </div>
-    <footer>
-        &copy; 2023 APEX Instagram Bio AI. All rights reserved.
-    </footer>
-    <script>
-        async function generateBio() {
-            const input = document.getElementById('bioInput').value;
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = 'Generating your bio...';
+        <h1 class="text-3xl font-bold text-center mb-6">InstaBio AI</h1>
+        <p class="text-center text-gray-600 mb-8">Craft captivating Instagram bios instantly.</p>
+        
+        <form id="bioForm" class="space-y-4">
+            <div>
+                <label for="keywords" class="block text-sm font-medium text-gray-700">Keywords (e.g., entrepreneur, traveler, fashion)</label>
+                <input type="text" id="keywords" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Separate with commas" required>
+            </div>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">Generate Bio Ideas</button>
+        </form>
 
-            // This is a placeholder for your actual API call.
-            // In a real app, you'd send `input` to your backend API route (e.g., /api/generate-bio).
-            // The backend would then call the AI model (e.g., OpenAI).
-            try {
-                const response = await fetch('/api/generate-bio', { // This endpoint needs to be implemented in your Next.js project
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ prompt: input })
-                });
-                const data = await response.json();
-                if (data.bio) {
-                    outputDiv.innerText = data.bio;
-                } else {
-                    outputDiv.innerText = 'Could not generate a bio. Please try again or provide more details.';
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                outputDiv.innerText = 'An error occurred while generating the bio. Please check your connection.';
-            }
-        }
+        <div id="results" class="mt-8 hidden">
+            <h2 class="text-xl font-semibold mb-4">Your Generated Bios:</h2>
+            <div id="bioList" class="space-y-4"></div>
+            <button id="checkoutBtn" class="mt-6 w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-md transition duration-300">Get Unlimited Access - $9.99</button>
+        </div>
+    </div>
+
+    <script>
+        // Placeholder for client-side logic (e.g., API calls, AI response display)
+        // In a Next.js app, this would be handled by React components.
+        document.getElementById('bioForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const keywords = document.getElementById('keywords').value;
+            const bioList = document.getElementById('bioList');
+            bioList.innerHTML = `
+                <div class="p-4 border border-gray-200 rounded-md bg-gray-50">✨ CEO & Dream Weaver | Inspiring growth & impact.</div>
+                <div class="p-4 border border-gray-200 rounded-md bg-gray-50">✈️ Wanderlust soul | Documenting adventures & hidden gems.</div>
+                <div class="p-4 border border-gray-200 rounded-md bg-gray-50">👗 Style curator | Empowering confidence through fashion.</div>
+            `;
+            document.getElementById('results').classList.remove('hidden');
+        });
+
+        document.getElementById('checkoutBtn').addEventListener('click', function() {
+            alert('Redirecting to secure checkout for $9.99!');
+            // In a real app, this would initiate a Stripe Checkout session.
+        });
     </script>
 </body>
 </html>
