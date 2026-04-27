@@ -1,15 +1,13 @@
-# InstaBio AI - Your AI-Powered Instagram Bio Generator
+# BioGenius AI
 
-InstaBio AI helps you craft unique and engaging Instagram bios in seconds. Simply input your keywords, and our AI generates multiple personalized options for you to choose from.
+## AI-Powered Instagram Bio Generator
 
-## Features
-- AI-powered bio generation based on keywords.
-- Instant suggestions for influencers, businesses, and personal brands.
-- Simple, intuitive interface.
+BioGenius AI helps you craft the perfect Instagram bio in seconds. Simply input your keywords, choose your desired tone (funny, professional, aesthetic, etc.), and our AI will generate a unique and engaging bio for you.
 
-## Get Started
-1. Enter relevant keywords.
-2. Choose from generated bio options.
-3. Unlock unlimited access and features for just $9.99.
+### Features:
+- Keyword-based bio generation
+- Multiple tone options
+- Instant results
+- Easy to copy and use
 
-Built with Next.js, Tailwind CSS, and powered by OpenAI's API. Hosted on Vercel.
+Perfect for influencers, small business owners, social media managers, and anyone looking to refresh their Instagram presence.
