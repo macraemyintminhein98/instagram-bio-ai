@@ -1,13 +1,11 @@
-# BioGenius AI
+# InstaBio AI
 
-## AI-Powered Instagram Bio Generator
+Generate creative and catchy Instagram bios instantly! Tell our AI about your interests, profession, and personality, and get a unique bio perfect for your profile.
 
-BioGenius AI helps you craft the perfect Instagram bio in seconds. Simply input your keywords, choose your desired tone (funny, professional, aesthetic, etc.), and our AI will generate a unique and engaging bio for you.
+## How it works
 
-### Features:
-- Keyword-based bio generation
-- Multiple tone options
-- Instant results
-- Easy to copy and use
+1.  Enter keywords describing yourself in the input field.
+2.  Click 'Generate Bio'.
+3.  Receive a custom, AI-crafted Instagram bio.
 
-Perfect for influencers, small business owners, social media managers, and anyone looking to refresh their Instagram presence.
+Perfect for influencers, businesses, and anyone looking to refresh their Instagram presence. Get started today!
