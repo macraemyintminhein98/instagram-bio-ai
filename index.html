@@ -1,1 +1,60 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>InstaBio AI</title><meta name="description" content="Generate stunning Instagram bios instantly with AI."><style>body{font-family:sans-serif;margin:0;padding:20px;background:#f0f2f5;color:#333;display:flex;flex-direction:column;align-items:center;min-height:100vh}h1{color:#1a1a1a;margin-bottom:10px}p{text-align:center;max-width:600px;margin-bottom:20px}textarea,input,button{width:100%;max-width:400px;padding:12px;margin-bottom:15px;border-radius:8px;border:1px solid #ddd;font-size:16px}textarea{height:120px;resize:vertical}button{background-color:#007bff;color:white;border:none;cursor:pointer;font-weight:bold;transition:background-color .3s}button:hover{background-color:#0056b3}#output{background:#fff;border:1px solid #eee;padding:15px;border-radius:8px;width:100%;max-width:400px;min-height:50px;white-space:pre-wrap;word-wrap:break-word;box-shadow:0 2px 5px rgba(0,0,0,.05)}</style></head><body><h1>InstaBio AI</h1><p>Craft the perfect Instagram bio effortlessly. Tell us about yourself, and our AI will do the rest!</p><textarea id="input" placeholder="e.g., foodie, traveler, cat lover, software engineer"></textarea><button onclick="generateBio()">Generate Bio</button><div id="output">Your new bio will appear here!</div><script>async function generateBio(){const input=document.getElementById('input').value;const output=document.getElementById('output');output.textContent='Generating...';try{const response={bio:"🚀 Exploring the world, one bite at a time. 🐾 Cat whisperer & code ninja. Your daily dose of wanderlust & tech!"};output.textContent=response.bio;}catch(error){output.textContent='Error generating bio. Please try again.';console.error('Error:',error)}}</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioGenie AI: Instagram Bio Generator</title>
+    <meta name="description" content="Generate stunning Instagram bios with AI.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 20px; background-color: #f7f9fc; color: #333; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { background-color: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 600px; width: 100%; text-align: center; }
+        h1 { color: #8800FF; margin-bottom: 20px; }
+        p { margin-bottom: 25px; line-height: 1.6; }
+        input[type="text"] { width: calc(100% - 22px); padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; }
+        button { background-color: #8800FF; color: white; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 600; transition: background-color 0.3s ease; }
+        button:hover { background-color: #6a00cc; }
+        #bioOutput { background-color: #eaf0f7; padding: 20px; border-radius: 8px; margin-top: 25px; min-height: 80px; text-align: left; white-space: pre-wrap; word-break: break-word; font-size: 1.1em; color: #555; border: 1px dashed #bbb; }
+        footer { margin-top: 40px; font-size: 0.9em; color: #777; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BioGenie AI</h1>
+        <p>Unlock your perfect Instagram bio. Simply tell us about yourself!</p>
+        <form id="bioForm">
+            <input type="text" id="keywords" placeholder="e.g., musician, traveler, funny, developer" required>
+            <button type="submit">Generate Bio</button>
+        </form>
+        <div id="bioOutput">Your unique bio will appear here.</div>
+        <button disabled style="margin-top: 20px; background-color: #ccc; cursor: not-allowed;">Premium Features Coming Soon</button>
+    </div>
+    <footer>
+        &copy; 2023 BioGenie AI. All rights reserved.
+    </footer>
+    <script>
+        document.getElementById('bioForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const keywords = document.getElementById('keywords').value;
+            const outputDiv = document.getElementById('bioOutput');
+            outputDiv.textContent = 'Generating your awesome bio...';
+            
+            // This is a placeholder. In a real app, you'd send 'keywords' to your backend API
+            // which would then interact with OpenAI or a similar service and handle Stripe.
+            
+            setTimeout(() => {
+                const dummyBios = [
+                    `🎶 Melodist & Dream Weaver | Exploring sounds, chasing sunsets. Let's connect! ✨`,
+                    `🌍 Wanderer by nature, storyteller by passion. Documenting life, one adventure at a time. #TravelJunkie`,
+                    `💻 Coding 🤝 Coffee | Building digital dreams, one line at a time. Creator. Innovator. Curious human.`,
+                    `😂 Professional overthinker | Aspiring meme lord. Life's too short for boring bios. DM for bad jokes.`
+                ];
+                const randomIndex = Math.floor(Math.random() * dummyBios.length);
+                outputDiv.textContent = dummyBios[randomIndex];
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
