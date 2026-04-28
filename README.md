@@ -1,19 +1,15 @@
-# BioBoost AI: Instagram Bio Generator
+# BioGenie - AI Instagram Bio Generator
 
-BioBoost AI is an AI-powered web tool designed to help Instagram users create catchy and personalized bios effortlessly. Input keywords, your profession, and desired tone, and let AI craft the perfect bio for you.
+BioGenie is an AI-powered web application designed to help you create unique and engaging Instagram bios in seconds. Simply input a few keywords that describe you or your brand, and BioGenie will generate multiple creative options for you to choose from or refine.
 
-## Features
-- AI-powered bio generation
-- Customizable input for personalized results
+## Features:
+- Intelligent bio generation based on keywords.
+- Multiple options to choose from.
+- Clean and user-friendly interface.
 
-## How to Use (Current Demo)
-1. Enter your desired keywords, profession, and tone into the text area.
-2. Click 'Generate Bio (Demo)' to see a placeholder bio.
+## How to Use:
+1. Enter keywords that describe your niche, hobbies, or personality (e.g., "photographer, traveler, foodie").
+2. Click "Generate My Bio".
+3. Select your favorite bio from the generated options!
 
-## Future Development (Full Product)
-- Integration with OpenAI's GPT-3.5-turbo API for real-time bio generation.
-- Stripe Checkout for micro-payments or credit packs.
-- Hosted on Vercel.
-
-## Target Audience
-Social media influencers, small business owners, and individuals looking to refresh their online presence.
+Boost your Instagram presence effortlessly with BioGenie!
