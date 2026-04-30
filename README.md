@@ -1,16 +1,40 @@
-# InstaBio AI
+# BioGenie AI - Instagram Bio Generator
 
-Generate captivating Instagram bios instantly with AI. Simply describe yourself or your brand, and let our intelligent model craft the perfect, engaging bio for your profile. 
+## Overview
 
-**Features:**
-- AI-powered bio generation
-- Simple, intuitive interface
-- One-time payment for unlimited access
+BioGenie AI is an AI-powered web application designed to help users create unique, personalized Instagram bios. Simply input your interests, profession, and desired tone, and let our AI craft a captivating bio for your profile.
 
-**Usage:**
-1. Enter your interests, profession, or mood in the text area.
-2. Click 'Generate Bio'.
-3. Copy your new, engaging Instagram bio!
+## Features
 
-**Pricing:**
-Access unlimited bio generations for a one-time fee of $4.99.
+-   **Personalized Bios:** Tailored bios based on your inputs.
+-   **Tone Selection:** Choose from professional, funny, inspiring, casual, and more.
+-   **Emoji Integration:** Bios include relevant and engaging emojis.
+-   **Instant Generation:** Get your new bio in seconds.
+-   **Simple Interface:** Easy-to-use input and output design.
+
+## How to Use
+
+1.  Enter your interests (e.g., travel, tech, fashion).
+2.  Specify your profession or what you do.
+3.  Select a desired tone for your bio.
+4.  Click "Generate Bio" and receive your AI-crafted Instagram bio.
+
+## Pricing
+
+-   One-time bio generation: $4.99
+
+## Technology Stack (Planned)
+
+-   **Frontend:** Next.js, Tailwind CSS
+-   **Backend:** Node.js (Vercel Serverless Functions)
+-   **AI:** OpenAI GPT-3.5 Turbo (or similar)
+-   **Payments:** Stripe Checkout
+-   **Deployment:** Vercel
+
+## Development Status
+
+This `index.html` provides a static frontend simulation of the planned application. Full AI integration and payment processing would be handled on the backend.
+
+## Support
+
+For inquiries, please contact [support@example.com].
