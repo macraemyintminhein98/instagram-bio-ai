@@ -3,88 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioBoost AI - Instant Instagram Bios</title>
-    <meta name="description" content="Generate creative Instagram bios instantly with AI. Perfect for influencers, businesses, and everyone!">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>BioGenie - AI Instagram Bio Generator</title>
+    <meta name="description" content="Generate creative and engaging Instagram bios instantly with AI.">
     <style>
-        body { font-family: 'Poppins', sans-serif; margin: 0; padding: 20px; background-color: #f0f2f5; color: #333; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .container { background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); max-width: 600px; width: 100%; text-align: center; }
-        h1 { color: #8a2be2; margin-bottom: 15px; font-size: 2em; }
-        p { margin-bottom: 25px; line-height: 1.6; }
-        .input-group { margin-bottom: 20px; text-align: left; }
-        label { display: block; margin-bottom: 8px; font-weight: 600; color: #555; }
-        textarea, input[type="text"] { width: calc(100% - 20px); padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; margin-top: 5px; resize: vertical; }
-        button { background-color: #8a2be2; color: white; padding: 12px 25px; border: none; border-radius: 8px; cursor: pointer; font-size: 1.1em; font-weight: 600; transition: background-color 0.3s ease; }
-        button:hover { background-color: #6a1aae; }
-        .bio-output { background-color: #e9ecef; padding: 15px; border-radius: 8px; margin-top: 25px; text-align: left; min-height: 80px; word-wrap: break-word; color: #333; font-size: 1.05em; }
-        .copy-button { background-color: #28a745; margin-top: 15px; }
-        .copy-button:hover { background-color: #218838; }
-        .price { font-size: 1.8em; font-weight: 700; color: #8a2be2; margin-top: 20px; }
-        .disclaimer { font-size: 0.8em; color: #777; margin-top: 30px; }
+        body { font-family: sans-serif; margin: 0; padding: 20px; background-color: #f9f9f9; color: #333; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { background-color: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); max-width: 600px; width: 100%; text-align: center; }
+        h1 { color: #333; margin-bottom: 20px; }
+        textarea, input[type="text"] { width: calc(100% - 20px); padding: 10px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+        button { background-color: #8C47FF; color: white; padding: 12px 25px; border: none; border-radius: 4px; cursor: pointer; font-size: 18px; transition: background-color 0.3s ease; }
+        button:hover { background-color: #723be6; }
+        #result { margin-top: 25px; padding: 20px; background-color: #eef; border-radius: 4px; text-align: left; white-space: pre-wrap; word-wrap: break-word; min-height: 50px; border: 1px dashed #ccc; }
+        .price { font-size: 24px; font-weight: bold; color: #8C47FF; margin-top: 20px; }
+        footer { margin-top: auto; padding-top: 20px; font-size: 0.9em; color: #777; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>BioBoost AI</h1>
-        <p>Craft the perfect Instagram bio instantly!</p>
-        <form id="bioForm">
-            <div class="input-group">
-                <label for="keywords">Keywords (e.g., tech, travel, foodie):</label>
-                <input type="text" id="keywords" placeholder="Developer, travel, dog lover" required>
-            </div>
-            <div class="input-group">
-                <label for="tone">Tone (e.g., witty, professional, laid-back):</label>
-                <input type="text" id="tone" placeholder="Witty, inspiring" required>
-            </div>
-            <button type="submit" id="generateBtn">Generate My Bio</button>
-        </form>
-        <div class="price">Only $4.99</div>
-        <div class="bio-output" id="outputContainer" style="display:none;">
-            <p id="generatedBio"></p>
-            <button class="copy-button" id="copyBtn" onclick="copyBio()">Copy Bio</button>
-        </div>
-        <p class="disclaimer">Powered by AI. Results may vary.</p>
+        <h1>BioGenie ✨</h1>
+        <p>AI-Powered Instagram Bio Generator</p>
+        <textarea id="keywords" rows="4" placeholder="Keywords (e.g., 'photographer', 'travel', 'foodie')"></textarea>
+        <input type="text" id="tone" placeholder="Desired Tone (e.g., 'witty', 'professional', 'inspiring')">
+        <button onclick="generateBio()">Generate Bio</button>
+        <div id="result">Your amazing bio will appear here!</div>
+        <p class="price">Only $2.00 per generation</p>
     </div>
+    <footer>
+        &copy; 2023 BioGenie. All rights reserved.
+    </footer>
     <script>
-        document.getElementById('bioForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        async function generateBio() {
             const keywords = document.getElementById('keywords').value;
             const tone = document.getElementById('tone').value;
-            const generateBtn = document.getElementById('generateBtn');
-            generateBtn.textContent = 'Generating...';
-            generateBtn.disabled = true;
-
-            // In a real app, this would be an API call to your backend/LLM
-            // For this HTML-only example, we'll simulate a response.
-            setTimeout(() => {
-                const dummyBio = `✨ Blending ${keywords} with a ${tone} vibe. Always creating & exploring! 🚀`;
-                document.getElementById('generatedBio').textContent = dummyBio;
-                document.getElementById('outputContainer').style.display = 'block';
-                generateBtn.textContent = 'Generate My Bio';
-                generateBtn.disabled = false;
-            }, 1500);
-
-            // For actual payment integration (Stripe Checkout):
-            // You'd redirect user to Stripe Checkout after successful generation or before.
-            // fetch('/create-checkout-session', {
-            //      method: 'POST',
-            //      headers: {'Content-Type': 'application/json'},
-            //      body: JSON.stringify({ bio_request: { keywords, tone } })
-            // })
-            // .then(res => res.json())
-            // .then(data => { window.location.href = data.url; })
-            // .catch(e => console.error(e));
-        });
-
-        function copyBio() {
-            const bioText = document.getElementById('generatedBio').textContent;
-            navigator.clipboard.writeText(bioText).then(() => {
-                alert('Bio copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-            });
+            const resultDiv = document.getElementById('result');
+            if (!keywords) {
+                resultDiv.textContent = "Please enter some keywords to generate a bio.";
+                return;
+            }
+            resultDiv.textContent = "Generating...";
+            // In a real app, this would call a backend API that handles AI generation and payment
+            try {
+                // Placeholder for API call
+                const response = await fetch('/api/generate-bio', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ keywords, tone })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    resultDiv.textContent = data.bio;
+                } else {
+                    resultDiv.textContent = data.error || 'Failed to generate bio. Please try again.';
+                }
+            } catch (error) {
+                resultDiv.textContent = 'An error occurred. Please check your connection and try again.';
+                console.error('Error:', error);
+            }
         }
     </script>
 </body>
