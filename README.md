@@ -1,15 +1,16 @@
-# AI Instagram Bio Generator
+# InstaBio AI
 
-Generate creative and engaging Instagram bios with AI! This tool helps influencers, content creators, and businesses craft the perfect bio based on keywords and desired tone. Simply input your keywords, choose a tone, and get multiple unique bio options, ready to copy and paste.
+Generate captivating Instagram bios instantly with AI. Simply describe yourself or your brand, and let our intelligent model craft the perfect, engaging bio for your profile. 
 
-### Features:
+**Features:**
 - AI-powered bio generation
-- Customizable tone options (funny, professional, inspiring, creative)
-- Instant bio options
-- "Copy to Clipboard" functionality
+- Simple, intuitive interface
+- One-time payment for unlimited access
 
-### How to Use:
-1. Enter keywords relevant to yourself or your brand.
-2. Select your desired tone.
-3. Click "Generate Bio" and choose your favorite.
-4. Copy to your clipboard and update your Instagram profile!
+**Usage:**
+1. Enter your interests, profession, or mood in the text area.
+2. Click 'Generate Bio'.
+3. Copy your new, engaging Instagram bio!
+
+**Pricing:**
+Access unlimited bio generations for a one-time fee of $4.99.
