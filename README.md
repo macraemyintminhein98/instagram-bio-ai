@@ -1,40 +1,25 @@
-# BioGenie AI - Instagram Bio Generator
+# BioBoost AI - Instagram Bio Generator
 
-## Overview
-
-BioGenie AI is an AI-powered web application designed to help users create unique, personalized Instagram bios. Simply input your interests, profession, and desired tone, and let our AI craft a captivating bio for your profile.
+BioBoost AI is a web tool that generates creative and engaging Instagram bios based on user-provided keywords. Perfect for influencers, small businesses, and anyone looking to boost their social media presence.
 
 ## Features
-
--   **Personalized Bios:** Tailored bios based on your inputs.
--   **Tone Selection:** Choose from professional, funny, inspiring, casual, and more.
--   **Emoji Integration:** Bios include relevant and engaging emojis.
--   **Instant Generation:** Get your new bio in seconds.
--   **Simple Interface:** Easy-to-use input and output design.
+- AI-powered bio generation.
+- Simple, intuitive interface.
+- Fast and efficient.
 
 ## How to Use
+1. Enter keywords describing yourself or your brand (e.g., "photographer, travel, foodie").
+2. Click "Generate Bio".
+3. Get a unique Instagram bio suggestion!
 
-1.  Enter your interests (e.g., travel, tech, fashion).
-2.  Specify your profession or what you do.
-3.  Select a desired tone for your bio.
-4.  Click "Generate Bio" and receive your AI-crafted Instagram bio.
+## Technologies
+- Frontend: HTML, CSS (TailwindCSS), Javascript.
+- Backend: Vercel serverless function (e.g., Node.js API calling OpenAI GPT).
+- Deployment: Vercel.
 
-## Pricing
+## Setup (Local)
+1. Clone this repository.
+2. Install dependencies (if any backend/framework is added later).
+3. For AI functionality, you'd typically set up a `.env` file with your `OPENAI_API_KEY` and a Vercel `api/generate-bio.js` function.
 
--   One-time bio generation: $4.99
-
-## Technology Stack (Planned)
-
--   **Frontend:** Next.js, Tailwind CSS
--   **Backend:** Node.js (Vercel Serverless Functions)
--   **AI:** OpenAI GPT-3.5 Turbo (or similar)
--   **Payments:** Stripe Checkout
--   **Deployment:** Vercel
-
-## Development Status
-
-This `index.html` provides a static frontend simulation of the planned application. Full AI integration and payment processing would be handled on the backend.
-
-## Support
-
-For inquiries, please contact [support@example.com].
+Stay tuned for payment integration with Stripe!
