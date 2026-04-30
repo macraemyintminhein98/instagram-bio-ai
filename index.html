@@ -3,64 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BioGenie AI - Instagram Bio Generator</title>
-    <meta name="description" content="Generate creative, personalized Instagram bios with AI.">
+    <title>BioBoost AI - Instagram Bio Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css">
     <style>
-        .gradient-bg { background: linear-gradient(to right, #6EE7B7, #3B82F6); }
-        .form-control { @apply w-full p-3 border border-gray-300 rounded mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500; }
-        .btn-primary { @apply w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 transition duration-300; }
-        .bio-output { @apply p-4 bg-gray-100 rounded mt-6 text-gray-800 break-words whitespace-pre-wrap; }
+        .max-w-screen-md { max-width: 768px; }
     </style>
 </head>
-<body class="font-sans antialiased bg-gray-50 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full m-4">
-        <h1 class="text-4xl font-bold text-center mb-6 text-gray-900">BioGenie AI ✨</h1>
-        <p class="text-center text-gray-600 mb-8">Craft your perfect Instagram bio instantly!</p>
-        <form id="bioForm" class="space-y-4">
-            <input type="text" id="interests" class="form-control" placeholder="Interests (e.g., travel, tech, food)">
-            <input type="text" id="profession" class="form-control" placeholder="Profession (e.g., student, entrepreneur)">
-            <select id="tone" class="form-control">
-                <option value="">Select Tone</option>
-                <option value="professional">Professional</option>
-                <option value="funny">Funny</option>
-                <option value="inspiring">Inspiring</option>
-                <option value="casual">Casual</option>
-            </select>
-            <button type="submit" class="btn-primary">Generate Bio ($4.99)</button>
-        </form>
-        <div id="bioOutput" class="bio-output hidden">
-            <p class="font-semibold mb-2">Your AI-Generated Bio:</p>
-            <p id="generatedBio" class="text-lg"></p>
+<body class="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-screen-md">
+        <h1 class="text-4xl font-extrabold text-gray-800 mb-4 text-center">BioBoost AI</h1>
+        <p class="text-gray-600 mb-6 text-center">Craft your perfect Instagram bio with AI!</p>
+        <div id="app">
+            <div class="mb-4">
+                <label for="keywords" class="block text-gray-700 text-sm font-bold mb-2">Keywords (e.g., photographer, travel, foodie):</label>
+                <input type="text" id="keywords" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter comma-separated keywords...">
+            </div>
+            <button id="generateBtn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full mb-4">
+                Generate Bio
+            </button>
+            <div id="result" class="mt-6 p-4 bg-gray-100 rounded border border-gray-300 hidden">
+                <h3 class="font-bold text-gray-700 mb-2">Your AI-Generated Bio:</h3>
+                <p id="bioText" class="text-gray-800 break-words"></p>
+            </div>
+            <div id="loading" class="hidden text-center text-gray-600 mt-4">Generating amazing bio...</div>
+            <div id="error" class="hidden text-center text-red-500 mt-4"></div>
         </div>
-        <p class="text-center text-sm text-gray-500 mt-6">Powered by magic & AI. ✨</p>
+        <p class="text-center text-gray-500 text-xs mt-6">
+            Limited-time offer: Get unlimited bios for $4.99! |
+            <a href="#" class="text-blue-500 hover:text-blue-800">Terms of Service</a>
+        </p>
     </div>
     <script>
-      document.getElementById('bioForm').addEventListener('submit', async function(e) {
-          e.preventDefault();
-          const interests = document.getElementById('interests').value;
-          const profession = document.getElementById('profession').value;
-          const tone = document.getElementById('tone').value;
-          const generatedBioElement = document.getElementById('generatedBio');
-          const bioOutputDiv = document.getElementById('bioOutput');
-          
-          // Simulate API call and payment
-          generatedBioElement.textContent = 'Generating your bio...';
-          bioOutputDiv.classList.remove('hidden');
+      document.getElementById('generateBtn').addEventListener('click', async () => {
+          const keywords = document.getElementById('keywords').value;
+          const resultDiv = document.getElementById('result');
+          const bioText = document.getElementById('bioText');
+          const loadingDiv = document.getElementById('loading');
+          const errorDiv = document.getElementById('error');
 
-          // In a real app, this would be an API call to a backend that handles AI generation and Stripe payment.
-          // This is a placeholder for demonstration.
-          setTimeout(() => {
-              const exampleBios = [
-                  `🎉 Exploring the world, one byte at a time. Tech enthusiast & Food lover. Living my best life! #DigitalNomad`, 
-                  `📚 Student by day, dreamer by night. Coffee-fueled code & adventure seeker. Always learning!`, 
-                  `💼 Entrepreneur | Building dreams & brands. Passionate about innovation & making an impact. Let's connect!`, 
-                  `😂 Here for a good time, not a long time. My life is 90% caffeine, 10% chaos. DM for memes!`, 
-                  `✨ Spreading good vibes & positivity. Inspiring others to chase their potential. Believe in yourself!`
-              ];
-              const randomBio = exampleBios[Math.floor(Math.random() * exampleBios.length)];
-              generatedBioElement.textContent = randomBio;
-          }, 2000);
+          resultDiv.classList.add('hidden');
+          errorDiv.classList.add('hidden');
+          loadingDiv.classList.remove('hidden');
+          bioText.textContent = '';
+
+          if (!keywords) {
+              errorDiv.textContent = 'Please enter some keywords!';
+              errorDiv.classList.remove('hidden');
+              loadingDiv.classList.add('hidden');
+              return;
+          }
+
+          try {
+              const response = await fetch('/api/generate-bio', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ keywords }),
+              });
+
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+
+              const data = await response.json();
+              if (data.bio) {
+                  bioText.textContent = data.bio;
+                  resultDiv.classList.remove('hidden');
+              } else {
+                  throw new Error('No bio returned from API.');
+              }
+          } catch (e) {
+              errorDiv.textContent = `Error: ${e.message}. Please try again.`;
+              errorDiv.classList.remove('hidden');
+          } finally {
+              loadingDiv.classList.add('hidden');
+          }
       });
     </script>
 </body>
